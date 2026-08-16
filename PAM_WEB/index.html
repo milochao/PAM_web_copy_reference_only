@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Palo Alto Museum</title>
+<meta name="description" content="Our first opening is Saturday, September 26. Free, with reservations. The Palo Alto Museum, 300 Homer Avenue.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#212121;          /* body text, from the live site */
+    --ink-strong:#1d1d1b;   /* headings */
+    --paper:#ffffff;        /* white ground */
+    --paper-2:#f7f9e5;      /* pale chartreuse tint, from the live site */
+    --paper-3:#f4f4f4;      /* neutral band */
+    --lime:#c7d300;         /* the wordmark chartreuse */
+    --green:#56ba5b;        /* mid green */
+    --green-dark:#234c25;   /* dark green, readable on white */
+    --rule:#e2e2dc;
+    --dim:#5f5f58;
+    --max: 68rem;
+    --gutter: clamp(1.25rem, 3.5vw, 2.75rem);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Open Sans", system-ui, sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  p{ margin: 0 0 1rem; }
+  p:last-child{ margin-bottom: 0; }
+  a{ color:var(--green-dark); text-decoration:none; border-bottom:1px solid rgba(35,76,37,.3); transition:color .15s, border-color .15s, background .15s; }
+  a:hover{ color:var(--ink-strong); border-bottom-color:var(--lime); background:var(--paper-2); }
+  .wrap{ max-width:var(--max); margin:0 auto; padding: 0 var(--gutter); }
+  .display{ font-family:"Open Sans", system-ui, sans-serif; font-weight:300; letter-spacing:-0.025em; line-height:1.03; }
+  .eyebrow{ font-family:"Open Sans", system-ui, sans-serif; font-weight:700; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--green-dark); border-bottom:0; display:inline-block; }
+
+  /* Header */
+  .siteheader{ padding: 1.75rem 0 1.25rem; border-bottom:1px solid var(--rule); }
+  .siteheader .wrap{ display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+  .wordmark{ display:inline-flex; align-items:center; gap:.7rem; font-family:"Open Sans", system-ui, sans-serif; font-weight:800; font-size:1.1rem; letter-spacing:-.005em; color:var(--ink); border-bottom:0; }
+  .wordmark-dot{ width:.85rem; height:.85rem; background:var(--lime); border-radius:2px; display:inline-block; }
+  .nav{ display:flex; gap:1.6rem; flex-wrap:wrap; }
+  .nav a{ font-size:.92rem; border-bottom:0; color:var(--ink); }
+  .nav a{ color:var(--ink); } .nav a:hover{ color:var(--green-dark); border-bottom:2px solid var(--lime); }
+
+  /* Section shell */
+  section{ padding: 4.5rem 0; border-bottom:1px solid var(--rule); }
+  section h2{ font-family:"Open Sans", system-ui, sans-serif; font-weight:300; color:var(--ink-strong); font-size: clamp(1.9rem, 4vw, 2.75rem); line-height:1.1; letter-spacing:-.01em; margin: 0 0 1.75rem; max-width: 26ch; }
+  section h3{ font-family:"Open Sans", system-ui, sans-serif; font-weight:700; font-size: 1.2rem; margin: 0 0 .5rem; }
+  section h4.eyebrow{ margin:0 0 1.25rem; }
+
+  /* Hero */
+  .hero{ padding: 5.5rem 0 4.5rem; }
+  .hero h1{ font-family:"Open Sans", system-ui, sans-serif; font-weight:300; font-size: clamp(2.75rem, 7.5vw, 5.5rem); line-height:1.0; letter-spacing:-.03em; margin: 0; max-width: 16ch; color:var(--ink-strong); }
+  .hero h1 .date{ color: var(--green-dark); display: block; font-weight:700; font-style:normal; letter-spacing:-.02em; }
+  .hero p{ max-width: 52ch; font-size: 1.15rem; margin-top: 2rem; }
+  .cta{ display:inline-flex; align-items:center; gap:.6rem; padding:.95rem 1.5rem; background:var(--green-dark); color:#ffffff; font-weight:600; border-bottom:0; font-size:.98rem; border:0; margin-top: 2rem; }
+  .cta:hover{ background:var(--lime); color:var(--ink-strong); }
+
+  /* On the day */
+  .day .card{ padding: 1.75rem 0 1.5rem; border-top:1px solid var(--rule); }
+  .day .card:first-of-type{ border-top:3px solid var(--lime); }
+  .day .card p{ max-width: 60ch; }
+  .day .card .more{ font-size:.92rem; font-weight:600; border-bottom:2px solid var(--lime); display:inline-block; margin-top:.5rem; }
+
+  /* Coming */
+  .coming{ background:var(--paper-2); }
+  .coming .lead{ font-family:"Open Sans", system-ui, sans-serif; font-weight:300; font-size: clamp(1.5rem, 3vw, 2rem); line-height:1.2; max-width: 32ch; margin:0 0 2rem; }
+  .coming .row{ display:grid; grid-template-columns: 8rem 1fr; gap:1.25rem 2rem; padding: 1.5rem 0; border-top:1px solid var(--rule); }
+  .coming .row:first-of-type{ border-top:3px solid var(--lime); }
+  .coming .row .when{ font-family:"Open Sans", system-ui, sans-serif; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; padding-top:.35rem; }
+  .coming .row h3{ margin: 0 0 .35rem; }
+  .coming .row p{ margin: 0; max-width: 60ch; }
+  .coming .runmore{ margin-top: 2rem; }
+
+  /* Plan brief */
+  .plan-brief p{ max-width: 60ch; }
+
+  /* About lead */
+  .about-lead p{ max-width: 60ch; font-size: 1.05rem; }
+  .about-lead p.big{ font-family:"Open Sans", system-ui, sans-serif; font-weight:300; color:var(--ink-strong); font-size: clamp(1.4rem, 2.5vw, 1.7rem); line-height:1.35; max-width: 32ch; margin-bottom: 1.75rem; }
+
+  /* Come back */
+  .come-back{ background:var(--green-dark); color:#ffffff; }
+  .come-back h2, .come-back h3{ color:#ffffff; }
+  .come-back a{ color:var(--lime); border-color: rgba(199,211,0,.5); background:transparent; }
+  .come-back a:hover{ color:#ffffff; border-color:#ffffff; background:transparent; }
+  .come-back .cols{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem 3rem; }
+  .come-back .cta{ background:var(--lime); color:var(--ink-strong); border:0; }
+  .come-back .cta:hover{ background:#ffffff; color:var(--ink-strong); }
+
+  /* Long page style */
+  .page-h1{ font-family:"Open Sans", system-ui, sans-serif; font-weight:300; color:var(--ink-strong); font-size: clamp(2.5rem, 5.5vw, 4rem); line-height:1.02; letter-spacing:-.02em; margin: 0 0 2rem; max-width: 22ch; }
+  .page-lede{ font-size: 1.15rem; max-width: 56ch; margin-bottom: 2rem; }
+  .page-body p{ max-width: 62ch; }
+  .page-body h3{ font-family:"Open Sans", system-ui, sans-serif; font-weight:700; font-size: 1.2rem; color:var(--green-dark); margin: 2.5rem 0 .75rem; }
+  .page-body h3:first-child{ margin-top: 0; }
+  .page-body ul{ max-width: 60ch; padding-left: 1.2rem; }
+  .page-body li{ margin-bottom: .5rem; }
+
+  /* Signed letter */
+  .letter{ max-width: 42rem; }
+  .letter .meta{ font-family:"Open Sans", system-ui, sans-serif; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color: var(--dim); margin-bottom: 2rem; }
+  .letter .signoff{ margin-top: 2rem; font-family:"Open Sans", system-ui, sans-serif; font-style: italic; font-weight:600; font-size: 1.15rem; color:var(--green-dark); }
+
+  /* Forms */
+  form{ max-width: 32rem; }
+  .field{ display:block; margin-bottom: .85rem; }
+  .field label{ display:block; font-family:"Open Sans", system-ui, sans-serif; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color: var(--dim); margin-bottom: .35rem; }
+  .field input, .field select{ width:100%; padding: .8rem 1rem; border:1px solid #c9c9c2; background:#ffffff; font: inherit; }
+  .field input:focus, .field select:focus{ outline: 2px solid var(--green); outline-offset: 2px; border-color:var(--green-dark); }
+
+  /* Footer */
+  footer.site{ padding: 3.5rem 0 3.75rem; background:var(--paper-3); }
+  footer.site .cols{ display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap:2.5rem; }
+  footer.site h4{ font-family:"Open Sans", system-ui, sans-serif; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); margin:0 0 .85rem; }
+  footer.site ul{ list-style:none; margin:0; padding:0; }
+  footer.site li{ margin-bottom:.45rem; font-size:.92rem; }
+  footer.site a{ border-bottom:0; }
+  footer.site a:hover{ border-bottom:1px solid currentColor; }
+  footer.site .lastword{ max-width: 30ch; font-family:"Open Sans", system-ui, sans-serif; font-weight:300; font-size:1.2rem; line-height:1.35; margin: 0 0 1rem;}
+  footer.site .contact{ font-size:.88rem; color: var(--dim); }
+  footer.site .contact a{ color: var(--dim); }
+  footer.site .legal{ margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family:"Open Sans", system-ui, sans-serif; font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; color: var(--dim); display:flex; justify-content: space-between; gap:1rem; flex-wrap: wrap; }
+
+  a:focus-visible, button:focus-visible{ outline: 3px solid var(--green); outline-offset:3px; }
+
+  @media (max-width: 780px){
+    .come-back .cols{ grid-template-columns: 1fr; }
+    footer.site .cols{ grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .coming .row{ grid-template-columns: 5.5rem 1fr; }
+    section{ padding: 3.5rem 0; }
+    .hero{ padding: 4rem 0 3.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="siteheader">
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="The Palo Alto Museum">
+      <span class="wordmark-dot" aria-hidden="true"></span>
+      <span>The Palo Alto Museum</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#whats-on">What is on</a>
+      <a href="#visit">Visit</a>
+      <a href="#tickets">Tickets</a>
+      <a href="#about">About</a>
+      <a href="#membership">Membership</a>
+      <a href="#signup">Sign up</a>
+    </nav>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <h1 class="display">Our first opening.<span class="date">Saturday, September 26.</span></h1>
+    <p>The Palo Alto Museum opens in stages between September and April. On September 26, the lobby and the courtyard open with Juana Briones and I Am Palo Alto. A new exhibit or event follows every few weeks after that. In April, the upper galleries open and the museum begins its regular schedule.</p>
+    <a class="cta" href="#tickets">Reserve your ticket for September 26 →</a>
+  </div>
+</section>
+
+<!-- ON SEPTEMBER 26 -->
+<section class="day">
+  <div class="wrap">
+    <h4 class="eyebrow">On September 26</h4>
+    <h2>What is open, and who will be there.</h2>
+
+    <div class="card">
+      <h3>Juana Briones</h3>
+      <p>In 1844, Juana Briones bought a rancho in her own name and, after leaving her husband, ran it herself. A woman was not supposed to be able to do either. She was also a healer and one of the earliest Californians in the record. Our first exhibition is a room built around her life. On September 26, her descendant Lorraine Ruiz Frain will be there to welcome you.</p>
+      <a class="more" href="#whats-on">Learn more about Juana Briones →</a>
+    </div>
+
+    <div class="card">
+      <h3>I Am Palo Alto</h3>
+      <p>An interactive wall of the people who have shaped this town, from Jane Stanford and Steve Jobs to Thomas Foon Chew and Sam McDonald. You can ask a digital docent about any of them out loud, and it answers with their stories, their words, and the context around them. You can also add a photograph of your own, someone from your family, a neighbor who mattered, or yourself, to the wall of Palo Altans alongside the icons.</p>
+      <a class="more" href="#whats-on">Learn more about I Am Palo Alto →</a>
+    </div>
+
+    <div class="card">
+      <h3>In the courtyard</h3>
+      <p>A curandera, a healer in the Mexican folk tradition, will pour you a cup of her own tea and talk with you about her practice. A Spanish guitarist plays under the camellias all afternoon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMING -->
+<section class="coming">
+  <div class="wrap">
+    <h4 class="eyebrow">What is coming</h4>
+    <p class="lead">Something new opens every few weeks between September and April.</p>
+
+    <div class="row">
+      <div class="when">Sat 10 Oct</div>
+      <div>
+        <h3>Music in the park</h3>
+        <p>Musicians with Palo Alto roots come back to play an afternoon in the park next door.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">Sat 7 Nov</div>
+      <div>
+        <h3>From Hooves to Hollywood</h3>
+        <p>The name is not a metaphor. Palo Alto's part in the movies begins with a horse and ends up in Hollywood, and the gallery walks the whole distance.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">Sat 12 Dec</div>
+      <div>
+        <h3>Writers and the holidays</h3>
+        <p>Palo Alto writers, our own new book, and Bell's Bookstore all in the museum on a December Saturday.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">Sun 24 Jan</div>
+      <div>
+        <h3>Kids, toys, and inventions</h3>
+        <p>A gallery of kids' toys, inventions, and interactives built to be handled.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">Feb 19 &amp; 20</div>
+      <div>
+        <h3>Tech demos</h3>
+        <p>The demo is a Palo Alto ritual. Somebody builds a thing, puts it on a table, and asks what you think. For one weekend the museum becomes that table. People building things here right now bring them in, and you get to try them and ask the person who made them how it works.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">Thu 11 Mar</div>
+      <div>
+        <h3>Flowers and art</h3>
+        <p>The camellias in our courtyard came from Japan in rice baskets around 1933. Some of the ones growing there now were planted in the 1940s by the doctors who worked in this building. For five days in March, the museum fills with flowers and with the art they get made into, with the Pacific Art League and Gamble Garden.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">April</div>
+      <div>
+        <h3>The upper galleries open</h3>
+        <p>The regular schedule begins. Dates will be announced in early spring.</p>
+      </div>
+    </div>
+
+    <p class="runmore"><a href="#whats-on">See the full run through April →</a></p>
+  </div>
+</section>
+
+<!-- PLAN VISIT BRIEF -->
+<section class="plan-brief">
+  <div class="wrap">
+    <h4 class="eyebrow">Plan your visit</h4>
+    <h2>Free, with reservations.</h2>
+    <p>September 26, 11 a.m. to 4 p.m. Reservations are required so we can hold your place. Plan for about an hour. Bring the kids; any age can add a photograph to the wall of Palo Altans, and more hands-on galleries open in the months ahead. For full details on admission, accessibility, parking, and transit, see the Visit page.</p>
+    <p><a href="#visit">Full visit details →</a></p>
+  </div>
+</section>
+
+<!-- ABOUT LEAD -->
+<section class="about-lead">
+  <div class="wrap">
+    <h4 class="eyebrow">Why this museum</h4>
+    <p class="big">Palo Alto is not a place that stayed the same.</p>
+    <p>In 1844, Juana Briones bought a rancho in her own name and ran it after leaving her husband, when a woman was not supposed to be able to do either. In 1878, Eadweard Muybridge lined up twelve cameras on the Stanford estate and photographed a galloping horse frame by frame. In 1932, doctors on Homer Avenue started a group practice when organized medicine was against it. In the 1950s, Joseph Eichler sold houses to Black families when the national association of home builders said not to. In 2020, after decades of keeping them out, the town opened Foothills Park to people who do not live here. Every one of these could have gone another way. This museum is where you see how they did not.</p>
+    <p><a href="#about">Read more about the museum →</a></p>
+  </div>
+</section>
+
+<!-- COME BACK -->
+<section class="come-back">
+  <div class="wrap">
+    <h4 class="eyebrow" style="color:rgba(246,243,234,.7)">Come back</h4>
+    <h2>Something new every few weeks.</h2>
+
+    <div class="cols">
+      <div>
+        <h3>Email updates</h3>
+        <p>A monthly note on what is opening and what is in the works.</p>
+        <p style="margin-top:1rem"><a href="#signup">Sign up →</a></p>
+      </div>
+      <div>
+        <h3>Membership</h3>
+        <p>For people who want first look. Founding members are welcomed one hour early to every opening between September and April.</p>
+        <p style="margin-top:1rem"><a href="#membership">Become a member →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit">
+  <div class="wrap">
+    <span class="eyebrow">Visit</span>
+    <h1 class="page-h1">Everything you need for September 26.</h1>
+
+    <div class="page-body">
+      <h3>Where to find us</h3>
+      <p>The Palo Alto Museum is at 300 Homer Avenue, at the corner of Bryant Street. We are three blocks from University Avenue in downtown Palo Alto, next to Heritage Park.</p>
+
+      <h3>Hours on September 26</h3>
+      <p>The museum is open from 11 a.m. to 4 p.m. Founding members and their guests are welcomed from 10 a.m. Reservations are required, even for free openings, so we can hold your place. Plan for about an hour.</p>
+
+      <h3>Admission</h3>
+      <p>September 26 and October 10 are free, with a reservation. Museum admission is $12 for adults, $9 for seniors, $6 for youth from six to seventeen, and free for children five and under. We offer discounts for school groups and for anyone with an EBT card (an electronic benefits card issued by the state of California for CalFresh and other assistance programs). If cost is a concern for you or your family, please write to us at <a href="mailto:info@paloaltomuseum.org">info@paloaltomuseum.org</a> and we will make it work.</p>
+
+      <h3>With kids</h3>
+      <p>The exhibits are built to include children. Any age can add a family member's photograph to the I Am Palo Alto wall. The Juana Briones room has physical elements children can handle. More hands-on galleries open in the months ahead, including one built around toys and inventions in January.</p>
+
+      <h3>Accessibility</h3>
+      <p>The building has an elevator and accessible restrooms. Because the museum is opening in stages, we are still confirming which routes and facilities are open on September 26. Write to us at <a href="mailto:info@paloaltomuseum.org">info@paloaltomuseum.org</a> before you come and we will tell you exactly what to expect on the day.</p>
+
+      <h3>Getting here on foot, by bike, by train, or by bus</h3>
+      <p>The Bryant Street Bike Boulevard runs past our front door, and bike racks are at the entrance. Caltrain to Palo Alto Station leaves you about a ten-minute walk through downtown. VTA bus 21 stops at Waverley Street and Homer Avenue, one block east.</p>
+
+      <h3>Parking</h3>
+      <p>Free two-hour street parking is available on the surrounding blocks. The Civic Center Garage, under City Hall at 250 Hamilton Avenue, is free for the first three hours and $20 for the day. The Oak Court garage at 260 Homer Avenue is free from 6 to 10 p.m. If you can, please carpool.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS ON -->
+<section id="whats-on" style="background:var(--paper-2)">
+  <div class="wrap">
+    <span class="eyebrow">What is on</span>
+    <h1 class="page-h1">Now, next, and coming through April.</h1>
+    <p class="page-lede">Between September 26 and April, a new exhibit or event opens roughly every few weeks.</p>
+
+    <div class="page-body">
+      <h3>Now. September 26. Juana Briones and I Am Palo Alto.</h3>
+      <p>Juana Briones was a healer, a landowner, and one of the earliest Californians in the record. In 1844, she bought a rancho in her own name and, after leaving her husband, ran it herself, at a time when a woman was not supposed to be able to do either. Our first exhibition is a room built around her life. On September 26, her descendant Lorraine Ruiz Frain will be there to welcome you.</p>
+      <p>I Am Palo Alto is an interactive wall of the people who have shaped this town. You can ask a digital docent about Jane Stanford, Steve Jobs, Thomas Foon Chew, Sam McDonald, and others out loud, and it answers with their stories, their words, and the context around them. You can also add a photograph of your own, someone from your family, a neighbor who mattered, or yourself, to the wall alongside the icons.</p>
+      <p>In the courtyard on September 26, a curandera, a healer in the Mexican folk tradition, will pour you a cup of her own tea and talk with you about her practice. A Spanish guitarist plays under the camellias all afternoon.</p>
+      <p><a href="#tickets">Reserve your September 26 ticket →</a></p>
+
+      <h3>Next. October 10. Music in the park.</h3>
+      <p>Musicians with Palo Alto roots come back to play an afternoon in the park next door.</p>
+
+      <h3>November 7. From Hooves to Hollywood.</h3>
+      <p>The name is not a metaphor. Palo Alto's part in the movies begins with a horse and ends up in Hollywood, and the gallery walks the whole distance, with film screenings, talks and demonstrations along the way.</p>
+
+      <h3>December 12. Writers and the holidays.</h3>
+      <p>Palo Alto writers, our own new book, and Bell's Bookstore all in the museum on a December Saturday.</p>
+
+      <h3>January 24. Kids, toys, and inventions.</h3>
+      <p>A gallery of kids' toys, inventions, and interactives built to be handled.</p>
+
+      <h3>February 19 and 20. Tech demos.</h3>
+      <p>The demo is a Palo Alto ritual. Somebody builds a thing, puts it on a table, and asks what you think. For one weekend the museum becomes that table. People building things here right now bring them in, and you get to try them and ask the person who made them how it works.</p>
+
+      <h3>March 11. Flowers and art.</h3>
+      <p>The camellias in our courtyard came from Japan in rice baskets around 1933. Some of the ones growing there now were planted in the 1940s by the doctors who worked in this building. For five days in March, the museum fills with flowers and with the art they get made into, with the Pacific Art League and Gamble Garden.</p>
+
+      <h3>April. The upper galleries open.</h3>
+      <p>The regular schedule begins. Dates will be announced in early spring.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <span class="eyebrow">About</span>
+    <h1 class="page-h1">Nothing here just happened.</h1>
+
+    <div class="page-body">
+      <p>In 1844, Juana Briones bought a rancho in her own name and ran it after leaving her husband, when a woman was not supposed to be able to do either. In 1878, Eadweard Muybridge lined up twelve cameras on the Stanford estate and photographed a galloping horse frame by frame. In 1932, doctors on Homer Avenue started a group practice when organized medicine was against it, in the building that is now this museum. In the 1950s, Joseph Eichler sold houses to Black families when the national association of home builders said not to. In 2020, after decades of keeping them out, the town opened Foothills Park to people who do not live here.</p>
+      <p>Each of these involved arguments, experiments, luck, and choices that could have gone another way. The Palo Alto Museum reconstructs those moments, before the outcome was known, and asks the same question of each: how did this happen?</p>
+
+      <h3>Why this museum, and why now</h3>
+      <p>Palo Alto's story is preserved in many places already. The historical association, the city archive at Guy Miller, the university library, family papers, private collections. What has been missing is a place that sets different kinds of those stories next to one another and looks at them the same way.</p>
+
+      <h3>How the museum works</h3>
+      <p>Every exhibition is joined by talks, performances, classes, and hands-on activities planned alongside it. A visit to the museum is not the whole experience. Coming back is.</p>
+      <p>We also ask questions. Each opening puts one question to the community about what we build next. You are not visiting a finished museum. You have a voice in what comes next.</p>
+
+      <h3>What community input has already changed</h3>
+      <p>Two exhibits opening this fall were shaped directly by what people told us. Several hundred names were considered for the first group of people featured in I Am Palo Alto. Five names came up again and again, across three rounds of community input, and all five are in the exhibit. And Juana Briones' room was expanded, on community request, to place her life inside the political and social context of her era.</p>
+
+      <h3>The building and the archive</h3>
+      <p>The building at 300 Homer Avenue was built in 1932 for the Palo Alto Medical Clinic. Its outside wall carries seventeen frescoes painted by Victor Arnautoff, who had studied fresco technique under Diego Rivera. In the X-ray panel, the patient is Arnautoff himself. One of the clinic's founding doctors thought another of the panels should be painted over. The argument stopped traffic on Homer Avenue for a time. The frescoes are still there.</p>
+      <p>The town's own record, the Guy Miller Archives, is one of the richer city archives on the peninsula. It is owned and run by the City of Palo Alto and lives inside our building. Alongside it, we are building the museum's own collection of objects, papers, and photographs donated by people who have shaped this town.</p>
+
+      <h3>Who runs the museum</h3>
+      <p>Marguerite Gong Hancock is the museum's inaugural president and CEO. She works closely with the board of directors and leads the museum's staff, alongside a large group of advisors and volunteers. A gift from the Thoits family made the museum's founding leadership possible.</p>
+
+      <h3>Get in touch</h3>
+      <p><a href="mailto:info@paloaltomuseum.org">info@paloaltomuseum.org</a><br>PO Box 676, Palo Alto CA 94302</p>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section id="membership" style="background:var(--paper-2)">
+  <div class="wrap">
+    <span class="eyebrow">Membership</span>
+    <h1 class="page-h1">Become a member of the Palo Alto Museum.</h1>
+
+    <div class="page-body">
+      <p class="page-lede">Members support the museum's exhibits, programs, and community work. In return, they get early access, invitations to member events, and free admission once the museum begins its regular schedule.</p>
+
+      <h3>Founding members</h3>
+      <p>For seven months this museum arrives a piece at a time. Founding members are the people who see each piece first.</p>
+      <p>Anyone who joins before the museum opens for its regular schedule next spring is a founding member. Founding members are welcomed an hour early to every opening between September and April, ahead of everybody else. Once the museum begins its regular schedule, founding members get a full year of free admission, and advance notice of every new exhibit and event.</p>
+
+      <h3>Membership tiers</h3>
+      <p>Membership starts at $79 a year for an individual and runs to $300 and above.</p>
+
+      <p style="margin-top:2rem;"><a class="cta" href="#" onclick="event.preventDefault(); alert('Membership checkout not wired in prototype.');">Become a member →</a></p>
+
+      <p style="margin-top:2rem;">Questions about membership? Write to us at <a href="mailto:info@paloaltomuseum.org">info@paloaltomuseum.org</a> and we will answer directly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TICKETS -->
+<section id="tickets">
+  <div class="wrap">
+    <span class="eyebrow">Tickets</span>
+    <h1 class="page-h1">Reserve your September 26 ticket.</h1>
+
+    <div class="page-body">
+      <p class="page-lede">Saturday, September 26, 2026. 11 a.m. to 4 p.m. The Palo Alto Museum, 300 Homer Avenue, Palo Alto. Admission is free, but a reservation is required so we can hold your place. Plan for about an hour.</p>
+
+      <p>What is open that day: the lobby, the Juana Briones exhibit, I Am Palo Alto, and the courtyard events, including a curandera pouring tea and a Spanish guitarist playing all afternoon. The upper galleries open in stages between now and April.</p>
+
+      <form onsubmit="event.preventDefault(); alert('Ticketing not wired in prototype.');">
+        <div class="field">
+          <label for="tname">Your name</label>
+          <input id="tname" type="text" required>
+        </div>
+        <div class="field">
+          <label for="temail">Email (your ticket will be sent here)</label>
+          <input id="temail" type="email" required>
+        </div>
+        <div class="field">
+          <label for="tparty">Party size</label>
+          <input id="tparty" type="number" min="1" max="6" required>
+        </div>
+        <div class="field">
+          <label for="twindow">Arrival window</label>
+          <select id="twindow" required>
+            <option value="">Choose a time</option>
+            <option>11 a.m. to 12 p.m.</option>
+            <option>12 p.m. to 1 p.m.</option>
+            <option>1 p.m. to 2 p.m.</option>
+            <option>2 p.m. to 3 p.m.</option>
+            <option>3 p.m. to 4 p.m.</option>
+          </select>
+        </div>
+        <button class="cta" type="submit">Reserve →</button>
+      </form>
+
+      <p style="margin-top:2rem;">Founding members are welcomed from 10 a.m. Not a member yet? <a href="#membership">Become a founding member.</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- SIGN UP -->
+<section id="signup" style="background:var(--paper-2)">
+  <div class="wrap">
+    <span class="eyebrow">Sign up</span>
+    <h1 class="page-h1">Get updates from the Palo Alto Museum.</h1>
+
+    <div class="page-body">
+      <p class="page-lede">A monthly email on what is opening, what is coming next, and what is in the works. We do not share your email, and you can unsubscribe at any time.</p>
+
+      <form onsubmit="event.preventDefault(); alert('Sign-up not wired in prototype.');">
+        <div class="field">
+          <label for="sname">Your name</label>
+          <input id="sname" type="text" required>
+        </div>
+        <div class="field">
+          <label for="semail">Email address</label>
+          <input id="semail" type="email" required>
+        </div>
+        <button class="cta" type="submit">Sign up →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- UPDATE / LETTER -->
+<section id="update">
+  <div class="wrap">
+    <span class="eyebrow">Where the building work stands</span>
+    <div class="letter">
+      <h1 class="page-h1">A note on where the building work stands.</h1>
+      <p class="meta">Marguerite Gong Hancock, President and CEO &nbsp;&middot;&nbsp; Updated August 2026</p>
+
+      <div class="page-body">
+        <p>Dear friends,</p>
+
+        <p>We open on September 26, and then in stages through the spring. Here is where the building work stands, and why we are opening this way.</p>
+
+        <p>In January of this year, heavy rain brought water into the basement of our 1932 building. What we thought at first was a single leak turned out, over the following four months, to be a series of them, on different walls and in different locations. We now understand that the problem is broader than the leaks themselves. To protect a nearly hundred-year-old building for the years ahead, we need to waterproof the below-ground walls, improve how water drains from the building and from Heritage Park around it, and control humidity inside so that historic materials and any artifacts on the premises stay safe.</p>
+
+        <p>Since the first leak, we have been working on it every day. We are working closely with the City of Palo Alto, which owns the building, and with civil engineers, water specialists and other outside experts. The work is complex and it will take longer than we first hoped.</p>
+
+        <p>Rather than keep the whole building closed while this continues, we decided to open in stages. On September 26, the lobby, the Juana Briones exhibit, I Am Palo Alto, and the courtyard open to the public. Between September and April, we will open more of the building as each stage of the water work clears. In April, the upper galleries open and the museum begins its regular schedule.</p>
+
+        <p>I will update this page every month with where things stand. When we confirm the April opening date, you will hear it here first.</p>
+
+        <p>Thank you for your patience, and for believing in this museum.</p>
+
+        <p class="signoff">Marguerite</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <p class="lastword">Our first opening.<br>Saturday, September 26.</p>
+        <p class="contact">
+          <a href="mailto:info@paloaltomuseum.org">info@paloaltomuseum.org</a><br>
+          300 Homer Avenue, Palo Alto CA<br>
+          PO Box 676, Palo Alto CA 94302
+        </p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="#visit">Hours &amp; admission</a></li>
+          <li><a href="#tickets">Tickets</a></li>
+          <li><a href="#whats-on">What is on</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#membership">Membership</a></li>
+          <li><a href="#signup">Sign up</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="#about">The museum</a></li>
+          <li><a href="#update">Building update</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="legal">
+      <span>&copy; 2026 The Palo Alto Museum. Tax ID 77-0634933.</span>
+      <span>Photographs by Marco Zecchin.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
